@@ -46,11 +46,12 @@ class Flat(models.Model):
         null=True,
         blank=True,
         db_index=True)
-    new_building = models.NullBooleanField('Новое здание', db_index=True)
+    new_building = models.NullBooleanField('Новое здание', blank=True, db_index=True)
     liked_by = models.ManyToManyField(
         User,
         verbose_name='Кто лайкнул',
         related_name='liked_flats',
+        blank=True,
         db_index=True)
 
     def __str__(self):
