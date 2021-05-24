@@ -12,10 +12,10 @@ def format_price(value):
 
 
 def show_flats(request):
-    town = request.GET.get('town')
-    min_price = format_price(request.GET.get('min_price'))
-    max_price = format_price(request.GET.get('max_price'))
-    new_building = request.GET.get('new_building') == "1"
+    town = request.GET.get("town")
+    min_price = format_price(request.GET.get("min_price"))
+    max_price = format_price(request.GET.get("max_price"))
+    new_building = request.GET.get("new_building") == "1"
 
     flats = Flat.objects.all()
     if town:
@@ -27,11 +27,11 @@ def show_flats(request):
     if new_building:
         flats = flats.filter(construction_year__gt=2014)
 
-    towns = Flat.objects.values_list('town', flat=True).distinct().order_by('town')
-    return render(request, 'flats_list.html', {
-        'flats': flats[:10],
-        'towns': towns,
-        'active_town': town,
-        'max_price': max_price,
-        'min_price': min_price,
-        'new_building': new_building})
+    towns = Flat.objects.values_list("town", flat=True).distinct().order_by("town")
+    return render(request, "flats_list.html", {
+        "flats": flats[:10],
+        "towns": towns,
+        "active_town": town,
+        "max_price": max_price,
+        "min_price": min_price,
+        "new_building": new_building})
